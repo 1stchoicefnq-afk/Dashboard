@@ -192,9 +192,9 @@ function signup(){
   }
 
   firebase.auth().createUserWithEmailAndPassword(email, pass)
-    .then(()=>{
-      window.location.href="app.html";
-    })
+  .then(() => {
+    window.location.href = "https://buy.stripe.com/00w28teu3gQk7EB0Br8Vi03";
+  })
     .catch(e=>{
       status.innerText = e.message;
     });
