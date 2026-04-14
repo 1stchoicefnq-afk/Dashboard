@@ -1,5 +1,8 @@
 <section id="tcpSaasPro">
   <style>
+    body {
+  display: none;
+}
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
     #tcpSaasPro,
@@ -2194,4 +2197,38 @@
       runCalc();
     })();
   </script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyC9UlL6WJ5JHL5-OJgAhSocxXREFMYgCLQ",
+  authDomain: "tradie-calculator-pro.firebaseapp.com",
+  projectId: "tradie-calculator-pro"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// 🔒 LOCK
+firebase.auth().onAuthStateChanged(function(user){
+
+  // ❌ NOT LOGGED IN
+  if(!user){
+    window.location.href = "index.html";
+    return;
+  }
+
+  // ❌ NOT PAID
+  const paidUsers = ["1stchoicefnq@gmail.com"];
+
+  if(!paidUsers.includes(user.email)){
+    window.location.href = "https://buy.stripe.com/00w28teu3gQk7EB0Br8Vi03";
+    return;
+  }
+
+  // ✅ ALLOWED
+  document.body.style.display = "block";
+
+});
+</script>
 </section>
