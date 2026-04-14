@@ -361,7 +361,7 @@
     firebase.auth().setPersistence(persistence)
       .then(() => firebase.auth().signInWithEmailAndPassword(email, password))
       .then(() => {
-        window.location.href = "/tradie-calculator-pro";
+       window.location.href = "/Dashboard/app.html";
       })
       .catch(err => {
         setStatus(err.message, "#ff6b6b");
