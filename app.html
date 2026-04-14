@@ -2217,11 +2217,13 @@ firebase.auth().onAuthStateChanged(function(user){
     window.location.href = "index.html";
     return;
   }
-
+console.log("Firebase email:", user.email);
   // ❌ NOT PAID
-  const paidUsers = ["1stchoicefnq@gmail.com"];
+const paidUsers = ["1stchoicefnq@gmail.com"];
 
-  if(!paidUsers.includes(user.email)){
+const userEmail = user.email.toLowerCase().trim();
+
+if(!paidUsers.includes(userEmail)){
     window.location.href = "https://buy.stripe.com/00w28teu3gQk7EB0Br8Vi03";
     return;
   }
