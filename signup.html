@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Create Account</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Poppins,Arial,sans-serif;
+  background:#070707;
+  color:#F5F1E8;
+}
+
+/* FULL SCREEN */
+.app{
+  position:fixed;
+  inset:0;
+}
+
+/* BACKGROUND */
+.bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.78)),
+    url("https://img1.wsimg.com/isteam/ip/228f7ec4-d3e5-44c1-aeb1-3954d9b015b2/Elegant%20modern%20entrance%20at%20dusk.png") center/cover no-repeat;
+}
+
+/* LAYOUT */
+.wrap{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:grid;
+  grid-template-columns:1fr 460px;
+  align-items:center;
+  padding:60px;
+  gap:40px;
+}
+
+/* LEFT */
+.hero h1{
+  font-size:64px;
+  font-weight:800;
+  line-height:1;
+}
+
+.hero span{color:#C6A75E;}
+
+.hero p{
+  margin-top:20px;
+  color:#aaa;
+}
+
+/* RIGHT CARD */
+.card{
+  background:rgba(12,12,12,.9);
+  padding:40px;
+  border-radius:22px;
+  border:1px solid rgba(198,167,94,.2);
+}
+
+.logo{
+  display:block;
+  margin:0 auto 15px;
+  height:60px;
+}
+
+.title{
+  text-align:center;
+  font-size:28px;
+  font-weight:800;
+}
+
+.sub{
+  text-align:center;
+  color:#aaa;
+  margin-bottom:20px;
+}
+
+/* INPUT */
+.input{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  background:#0b0b0b;
+  border:1px solid rgba(198,167,94,.2);
+  border-radius:10px;
+  color:#fff;
+}
+
+/* BUTTON */
+.btn{
+  width:100%;
+  padding:14px;
+  background:#C6A75E;
+  border:none;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* STATUS */
+.status{
+  text-align:center;
+  margin-top:10px;
+  font-size:13px;
+}
+
+/* LINKS */
+.link{
+  color:#C6A75E;
+  text-decoration:none;
+}
+
+.center{text-align:center;margin-top:15px}
+
+@media(max-width:900px){
+  .wrap{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="bg"></div>
+
+<div class="wrap">
+
+  <!-- LEFT -->
+  <div class="hero">
+    <h1>Create your <span>Tradie account</span></h1>
+    <p>Start quoting faster and win more jobs.</p>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="card">
+
+    <img class="logo"
+    src="https://img1.wsimg.com/isteam/ip/228f7ec4-d3e5-44c1-aeb1-3954d9b015b2/Tradiecalcpro.png/:/rs=h:175,m">
+
+    <div class="title">Create Account</div>
+    <div class="sub">Start your Tradie Calculator Pro access</div>
+
+    <input id="email" class="input" placeholder="Email">
+    <input id="password" class="input" type="password" placeholder="Password">
+    <input id="confirm" class="input" type="password" placeholder="Confirm password">
+
+    <button class="btn" onclick="signup()">Create Account</button>
+
+    <div id="status" class="status"></div>
+
+    <div class="center">
+      Already have an account?
+      <a class="link" href="index.html">Login</a>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyC9UlL6WJ5JHL5-OJgAhSocxXREFMYgCLQ",
+  authDomain: "tradie-calculator-pro.firebaseapp.com",
+  projectId: "tradie-calculator-pro"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+function signup(){
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm").value;
+  const status = document.getElementById("status");
+
+  if(pass !== confirm){
+    status.innerText = "Passwords don’t match";
+    return;
+  }
+
+  firebase.auth().createUserWithEmailAndPassword(email, pass)
+    .then(()=>{
+      window.location.href="app.html";
+    })
+    .catch(e=>{
+      status.innerText = e.message;
+    });
+}
+</script>
+
+</body>
+</html>
